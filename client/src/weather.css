@@ -1,0 +1,68 @@
+body {
+  background-color: black;
+  color:white;
+}
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600&display=swap");
+.weather_container {
+  z-index: 10;
+  position: relative;
+  font-family: "Inconsolata";
+  margin: 2vw;
+  padding: 0;
+  height: 100vh;
+  max-width: 30vw;
+}
+.weather_info {
+  max-width: 30vw;
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.weather_info_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.weather_info_main_description {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #8cf25c;
+}
+.weather_info_main_img-site {
+  min-width: 15vw;
+  min-height: 15vh;
+}
+.weather_info_main_temp {
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin: 0;
+  color: #05aff2;
+  margin-left: 50px;
+}
+h3 {
+  color: #f2b90f;
+}
+.weather_info_details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.weather_info_details_left,
+.weather_info_details_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  padding-bottom: 5px;
+}
+.weather_info_details_right {
+  margin-left: 3vw;
+}
+.weather_info_general {
+  display: flex;
+  justify-content: flex-start;
+  color: #f23d91;
+  font-weight: 500;
+}
