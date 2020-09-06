@@ -17,8 +17,10 @@
     "express": "^4.17.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
+    "node-dht-sensor": "^0.4.3",
     "nodejs-weather-app": "^1.9.0",
     "nodemon": "^2.0.4",
+    "onoff": "^6.0.0",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   }

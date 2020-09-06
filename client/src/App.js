@@ -3,11 +3,15 @@ import './weather.css';
 import DigitalClock from "./DigitalClock"
 import socketIOClient from "socket.io-client";
 import { useStateWithLocalStorage, useStateWithLocalStorageArr } from "./useStateWithLocalStorage";
-const ENDPOINT = "http://127.0.0.1:4001";
+const ENDPOINT = "http://85.222.120.170:33334";
 
 const App = () => {
   const [getTime, setTime] = useState([]);
-  const [getCityName, setCityName] = useStateWithLocalStorage("cityName"); // korzysta z hooka u góry
+  const [getTemperature, setTemperature] = useState([]);
+  const [getHumidity, setHumidity] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // const [weatherData, setResponse] = ([""]); 
   const [weatherData, setResponse] = useStateWithLocalStorageArr(
     "weatherDetails"
   );
@@ -15,17 +19,28 @@ const App = () => {
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);
     socket.on("FromAPI", data => {
-      setResponse(data);
-      // console.log(data);
+     setResponse(data);
     });
     socket.on("FromTimeAPI", time => {
       setTime(time);
-      // console.log(time);
+    });
+    socket.on("temperature", temp => {
+      setTemperature(temp);
+    });
+    socket.on("humidity", hum => {
+      setHumidity(hum);
     });
   }, []);
 
+  if (isLoading) {
+    return <p className="alert alert-info">Please wait, Loading...</p>;
+  }
+
   return (
     <>
+<div>{getTemperature}</div>
+<div>{getHumidity}</div>
+
       <div className="weather_info" key={weatherData.id}>
         <div className="weather_info_main">
           <p className="weather_info_main_description">
@@ -42,7 +57,7 @@ const App = () => {
             }}
           ></div>
 
-          <p className="weather_info_main_temp">{weatherData.main.temp}&#x2103;</p>
+          <p className="weather_info_main_temp">{weatherData.main.temp.toFixed(1)}&#x2103;</p>
         </div>
         <p>{weatherData.coord.lon}</p>
         <p>{weatherData.coord.lat}</p>
